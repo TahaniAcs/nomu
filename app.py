@@ -37,7 +37,7 @@ def load_model():
     model_loaded = True
     try:
         from ultralytics import YOLO
-        model_path = os.path.join(os.path.dirname(__file__), 'best.pt')
+        model_path = os.path.join(os.path.dirname(__file__), 'Models', 'best.pt')
         if os.path.exists(model_path):
             model = YOLO(model_path)
             print("✅ YOLO model loaded successfully")
