@@ -1,0 +1,20 @@
+# AI Model (YOLOv8)
+ultralytics
+
+# Image Processing
+Pillow
+
+# Web Framework & Utilities
+werkzeug
+flask
+
+# AI Integration
+openai
+
+# Data Integration (Essential for Nomu)
+roboflow
+
+# Core Dependencies
+torch
+torchvision
+numpy
