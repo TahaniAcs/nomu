@@ -1,0 +1,9 @@
+path: /content/datasets/nemo-1 # الباث المطلق داخل بيئة كولاب لضمان الاستقرار
+train: train/images
+val: valid/images
+test: test/images
+
+# Classes
+names:
+  0: Fig
+  1: olive
