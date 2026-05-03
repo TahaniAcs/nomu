@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}الإعدادات{% endblock %}
+{% block content %}
+<div class="page-container">
+    <div class="dashboard-layout">
+        <div class="dashboard-content">
+            <div class="form-card">
+                <div style="text-align:right;margin-bottom:24px">
+                    <h1 style="font-size:1.6rem;font-weight:800;color:var(--green-dark)">⚙️ الإعدادات</h1>
+                    <p style="color:var(--text-light)">تحكم في خيارات تحليل الذكاء الاصطناعي.</p>
+                </div>
+                <form method="POST">
+                    <div style="background:var(--green-light);border:1px solid var(--green-btn);border-radius:12px;padding:20px;margin-bottom:18px">
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+                            <div style="text-align:right;flex:1;min-width:240px">
+                                <h3 style="font-weight:800;color:var(--green-dark);font-size:1.05rem;margin:0 0 6px">🍃 التحقق من نوع الثمرة</h3>
+                                <p style="color:var(--text);font-size:.9rem;margin:0;line-height:1.6">
+                                    عند تفعيلها، يرفض النظام أي صورة لا تطابق المحصول المختار (مثلاً: تمر بدلاً من زيتون). أوقفها لتحليل أي صورة دون التحقق.
+                                </p>
+                            </div>
+                            <input type="hidden" name="wrong_fruit_check" id="wfc" value="{% if user['wrong_fruit_check'] %}on{% else %}off{% endif %}">
+                            <span id="wfcSlider" onclick="toggleWfc()" style="position:relative;display:inline-block;width:50px;height:26px;background:{% if user['wrong_fruit_check'] %}var(--green-btn){% else %}#ccc{% endif %};border-radius:26px;transition:background .2s;cursor:pointer;flex-shrink:0">
+                                <span id="wfcKnob" style="position:absolute;top:3px;{% if user['wrong_fruit_check'] %}right:27px{% else %}right:3px{% endif %};width:20px;height:20px;background:#fff;border-radius:50%;transition:right .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <button type="submit" class="btn btn-primary btn-lg">حفظ الإعدادات</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="sidebar">
+            <ul class="sidebar-nav">
+                <li><a href="{{ url_for('farmer_dashboard') }}"><span class="icon">🏠</span> نظرة عامة</a></li>
+                <li><a href="{{ url_for('farmer_requests') }}"><span class="icon">👥</span> طلباتي</a></li>
+                <li><a href="{{ url_for('farmer_new_request') }}"><span class="icon">➕</span> طلب جديد</a></li>
+                <li><a href="{{ url_for('farmer_predict') }}"><span class="icon">🤖</span> تقدير الحصاد</a></li>
+                <li><a href="{{ url_for('farmer_settings') }}" class="active"><span class="icon">⚙️</span> الإعدادات</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleWfc(){
+        const input = document.getElementById('wfc');
+        const slider = document.getElementById('wfcSlider');
+        const knob = document.getElementById('wfcKnob');
+        const on = input.value !== 'on';
+        input.value = on ? 'on' : 'off';
+        slider.style.background = on ? 'var(--green-btn)' : '#ccc';
+        knob.style.right = on ? '27px' : '3px';
+    }
+</script>
+{% endblock %}
